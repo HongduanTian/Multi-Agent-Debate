@@ -1,6 +1,6 @@
 #! /bin/bash
 model_name="qwen-2.5-7b"
-dataset=("math" "mmlu_pro" "aime24" "aime25")
+dataset=("math" "mmlu_pro")
 seeds=(41 42 43 44 45)
 gpus=0,1
 
@@ -9,3 +9,7 @@ for dataset in "${dataset[@]}"; do
         python chain_of_thoughts.py --model_name $model_name --dataset $dataset --seed $seed --gpu_id $gpus --parallel
     done
 done
+
+python chain_of_thoughts.py --model_name $model_name --dataset "aime24" --seed 42 --gpu_id $gpus --parallel
+
+python chain_of_thoughts.py --model_name $model_name --dataset "aime25" --seed 42 --gpu_id $gpus --parallel

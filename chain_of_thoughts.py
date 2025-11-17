@@ -40,21 +40,25 @@ def main():
     dataset_path = f"./processed_data/{args.dataset}/{args.dataset}_test.jsonl"
     assert os.path.exists(dataset_path), f"Dataset path {dataset_path} does not exist"
     print(f">>>>>> Loading {args.dataset} dataset from {dataset_path}...")
+    
+    save_path = os.path.join(args.save_path, args.exp_name)
+    os.makedirs(save_path, exist_ok=True)
+    
     if args.dataset == "math":
         samples = 100
-        evaluator = MATHEval(dataset_path, args.save_path, samples, args.seed)
+        evaluator = MATHEval(dataset_path, save_path, samples, args.seed)
     elif args.dataset == "gsm8k":
-        samples = 5
-        evaluator = GSM8KEval(dataset_path, args.save_path, samples, args.seed)
+        samples = 100
+        evaluator = GSM8KEval(dataset_path, save_path, samples, args.seed)
     elif args.dataset == "mmlu_pro":
         samples = 100
-        evaluator = MMLUProEval(dataset_path, args.save_path, samples, args.seed)
+        evaluator = MMLUProEval(dataset_path, save_path, samples, args.seed)
     elif args.dataset == "aime24":
         samples = None 
-        evaluator = AIMEEval(dataset_path, args.save_path, samples, args.seed)
+        evaluator = AIMEEval(dataset_path, save_path, samples, args.seed)
     elif args.dataset == "aime25":
         samples = None 
-        evaluator = AIMEEval(dataset_path, args.save_path, samples, args.seed)
+        evaluator = AIMEEval(dataset_path, save_path, samples, args.seed)
     else:
         raise ValueError(f"Invalid dataset: {args.dataset}")
     

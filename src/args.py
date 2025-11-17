@@ -14,7 +14,9 @@ def parse_args():
     parser.add_argument("--max_round", type=int, default=2, help="Maximum number of rounds.")
     parser.add_argument("--mode", type=str, default="mad", choices=["mad", "cot"], help="The mode of the experiment.")
     parser.add_argument("--num_reasoning_paths", type=int, default=6, help="The number of reasoning paths. Only for CoT.")
-    parser.add_argument("--save_path", type=str, default="results/main", help="The path to save the results.")
+    parser.add_argument("--save_path", type=str, default="results", help="The path to save the results.")
     parser.add_argument("--self_consistency", action="store_true", default=False, help="Whether to use self-consitency mode.")
+    
+    parser.add_argument("--exp_name", type=str, default="main", help="The name of the experiment.")
     args = parser.parse_args()
     return args
