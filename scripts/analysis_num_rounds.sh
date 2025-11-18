@@ -1,9 +1,10 @@
 #! /bin/bash
-model_name="qwen-2.5-7b"
+model_name="qwen2.5-7b"
 dataset=("math" "mmlu_pro" "aime24" "aime25")
 seeds=42
 gpus=0,1
 
+num_agents=3
 num_rounds=(3 5 6 8 10)
 
 for dataset in "${dataset[@]}"; do

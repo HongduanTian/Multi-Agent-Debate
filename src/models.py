@@ -17,6 +17,8 @@ class LanguageModel:
             llm_name_path = self.llm_config.model_path
         else:
             llm_name_path = self.llm_config.model
+        
+        print(f">>>>>> LLM name path: {llm_name_path}")
 
         self.llm = LLM(
             model=llm_name_path,

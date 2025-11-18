@@ -189,7 +189,7 @@ class MultiAgentDebate:
         for ctxList, pplList in zip(contextList, perplexity_contexts):
             cur_selected_contexts = []
             sorted_ppl_list = sorted(pplList, reverse=True)
-            threshold = sorted_ppl_list[len(pplList)//2 - 1]
+            threshold = sorted_ppl_list[len(pplList)//2]
             cur_masks = [ppl < threshold for ppl in pplList]
             for ctx, mask in zip(ctxList, cur_masks):
                 if mask:

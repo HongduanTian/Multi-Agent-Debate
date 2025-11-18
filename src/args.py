@@ -6,7 +6,7 @@ def parse_args():
     parser.add_argument("--parallel", action="store_true", default=False, help="Whether to use parallel mode.")
     parser.add_argument("--gpu_id", type=str, default="0", help="The GPU ID.")
     parser.add_argument("--seed", type=int, default=42, help="The seed of the experiment.")
-    parser.add_argument("--model_name", type=str, default="qwen-2.5-7b", choices=["qwen-2.5-7b", "qwen-2.5-14b", "qwen-2.5-72b"], help="The name of the experiment.")
+    parser.add_argument("--model_name", type=str, default="qwen-2.5-7b", help="The name of the experiment.")
     parser.add_argument("--dataset", type=str, default="math", choices=["gsm8k", "math", "mmlu_pro", "aime24", "aime25"], help="The name of the dataset.")
     parser.add_argument("--num_agents", type=int, default=3, help="The number of agents.")
     parser.add_argument("--prune_strategy", type=str, default="naive", choices=["none","naive", "ppl"], help="The prune mode.")
