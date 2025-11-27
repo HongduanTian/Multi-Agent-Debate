@@ -5,7 +5,7 @@ from vllm import LLM, SamplingParams
 from src.config_utils import LLMConfig
 from src.model_utils import TokenUsageTracker
 from typing import List
-from src.utils import extract_answers
+from src.utils import extract_answers, extract_answers_with_box
 
 
 class LanguageModel:
@@ -90,8 +90,12 @@ class LanguageModel:
                 try:
                     result = extract_answers(response)
                 except ValueError as e:
-                    result = {"think": "", "answer": ""}
-                    print(f">>>>>> Error: {e}")
+                    try:
+                        answer = extract_answers_with_box(response)
+                        result = {"think": response, "answer": answer}
+                    except:
+                        result = {"think": "", "answer": ""}
+                        print(f">>>>>> Error: Fail to parse answers.")
                 results_list.append(result)
             else:
                 results_list.append(response)

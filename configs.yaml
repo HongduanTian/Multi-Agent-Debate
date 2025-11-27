@@ -9,10 +9,15 @@ llm_configs:
   qwen2.5-math-7b:
     model: "Qwen/Qwen2.5-Math-7B-Instruct"
     model_path: None
-    max_token_length: 8192
+    max_token_length: 4096
+    temperature: 0.6
   qwq-32b:
     model: "Qwen/QWQ-32B-Instruct"
     model_path: None
   qwen2.5-72b:
     model: "Qwen/Qwen2.5-72B-Instruct"
     model_path: None
+  deepseek-math-7b:
+    model: "deepseek-ai/deepseek-math-7b-instruct"
+    model_path: None
+    max_token_length: 4096

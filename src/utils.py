@@ -3,14 +3,25 @@ from collections import Counter
 import random
 
 
+def extract_answers_with_box(text:str):
+    pattern = r"\\boxed{(.*?)}"
+    match = re.search(pattern, text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    else:
+        raise ValueError("Answer Parsing Failure: 'answer' is missing or empty.")
+
+
 def extract_answers(text:str):
     pattern = r"<(\w+)>(.*?)</\1>"
     matches = re.findall(pattern, text, re.DOTALL)
     found_fields = {match[0]: match[1].strip() for match in matches}
     if "think" not in found_fields:
-        raise ValueError("Info Parsing Failure:Field 'think' is missing or empty.")
+        #print(f">>>>>> Original response: {text}")
+        raise ValueError("Info Parsing Failure: 'think' is missing or empty.")
     if "answer" not in found_fields:
-        raise ValueError("Info Parsing Failure:Field 'answer' is missing or empty.")
+        #print(f">>>>>> Original response: {text}")
+        raise ValueError("Info Parsing Failure: 'answer' is missing or empty.")
     return found_fields
 
 def extract_with_label(text: str, pattern: str = "answer"):

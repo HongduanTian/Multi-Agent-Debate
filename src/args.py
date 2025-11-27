@@ -10,7 +10,7 @@ def parse_args():
     parser.add_argument("--dataset", type=str, default="math", choices=["gsm8k", "math", "mmlu_pro", "aime24", "aime25"], help="The name of the dataset.")
     parser.add_argument("--num_agents", type=int, default=3, help="The number of agents.")
     parser.add_argument("--prune_strategy", type=str, default="naive", choices=["none","naive", "ppl"], help="The prune mode.")
-    parser.add_argument("--strict", type=bool, default=False, help="Whether to use strict mode.")
+    parser.add_argument("--strict", action="store_true", default=False, help="Whether to use strict mode.")
     parser.add_argument("--max_round", type=int, default=2, help="Maximum number of rounds.")
     parser.add_argument("--mode", type=str, default="mad", choices=["mad", "cot"], help="The mode of the experiment.")
     parser.add_argument("--num_reasoning_paths", type=int, default=6, help="The number of reasoning paths. Only for CoT.")

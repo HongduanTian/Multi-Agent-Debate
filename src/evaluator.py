@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import numpy as np
 import datetime
 import asyncio
@@ -56,6 +57,7 @@ class BaseEvaluator(ABC):
     def eval(self, agent_pipeline, args = None):
         
         # evaluating models of datasets
+        time_start = time.time()
         print(f"Evaluating on {len(self.data)} test data.")
         results = agent_pipeline(self.data)
         
@@ -67,6 +69,11 @@ class BaseEvaluator(ABC):
                 "token_usage_summary": token_usage_summary,
                 "results": results,
             }
+            eval_time = time.time() - time_start
+            print(f"Evaluation time: {eval_time} seconds")
+            print(f"Average time per sample: {eval_time / len(self.data)} seconds")
+            summary["time_consumption"] = eval_time
+            summary["average_time_per_sample"] = eval_time / len(self.data)
             
             method_name = "mad_naive" if args.prune_strategy == "naive" else "mad_ppl" if args.prune_strategy == "ppl" else "mad"
             file_name = f"{self.save_path}/{args.model_name}/{args.dataset}/{method_name}_{args.num_agents}agents_{args.max_round}rounds_seed{args.seed}"
@@ -89,6 +96,12 @@ class BaseEvaluator(ABC):
                     "token_usage_summary": token_usage_summary,
                     "results": result_dict,
                 }
+                eval_time = time.time() - time_start
+                print(f"Evaluation time: {eval_time} seconds")
+                print(f"Average time per sample: {eval_time / len(self.data)} seconds")
+                summary["time_consumption"] = eval_time
+                summary["average_time_per_sample"] = eval_time / len(self.data)
+                
                 method_name = "cot_sc"
                 file_name = f"{self.save_path}/{args.model_name}/{args.dataset}/{method_name}_{args.num_reasoning_paths}paths_seed{args.seed}"
                 agent_pipeline.save_cot_log(file_name+"_cot_log.json")
@@ -107,6 +120,12 @@ class BaseEvaluator(ABC):
                     "token_usage_summary": token_usage_summary,
                     "results": result_dict,
                 }
+                eval_time = time.time() - time_start
+                print(f"Evaluation time: {eval_time} seconds")
+                print(f"Average time per sample: {eval_time / len(self.data)} seconds")
+                summary["time_consumption"] = eval_time
+                summary["average_time_per_sample"] = eval_time / len(self.data)
+                
                 method_name = "cot"
                 file_name = f"{self.save_path}/{args.model_name}/{args.dataset}/{method_name}_seed{args.seed}"
                 agent_pipeline.save_cot_log(file_name+"_cot_log.json")
@@ -130,6 +149,7 @@ class BaseEvaluator(ABC):
 
 # --------------------------------------- Evaluators ---------------------------------------
 class MMLUProEval(BaseEvaluator):
+    #@classmethod
     def calculate_score(self, prediction: str, expected_output: str) -> float:
         try:
             extracted_answer = self._extract_model_answer(prediction)
@@ -187,7 +207,7 @@ class MMLUProEval(BaseEvaluator):
 
 
 class MATHEval(BaseEvaluator):
-    
+    #@classmethod
     def calculate_score(self, prediction:str, expected_output:str) -> float:
         try:
             # print("prediction: ", prediction)
@@ -295,6 +315,7 @@ class MATHEval(BaseEvaluator):
 
 from src.utils import extract_number
 class AIMEEval(BaseEvaluator):
+    #@classmethod
     def calculate_score(self, prediction:str, expected_output:str) -> float:
         try:
             pred_answer = self._extract_model_answer(str(prediction))

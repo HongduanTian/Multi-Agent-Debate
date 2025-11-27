@@ -5,16 +5,17 @@ import numpy as np
 from src.models import LanguageModel
 from typing import List, Tuple, Dict, Any
 from src.prompts import *
-from src.utils import if_reach_consensus, extract_answers, dataset_2_process_fn, extract_with_label
+from src.utils import if_reach_consensus, extract_answers, dataset_2_process_fn, extract_with_label, normalize_answer
 
 
 class MultiAgentDebate:
     
-    def __init__(self, agent:LanguageModel, dataset_name:str, num_agents:int, max_round:int, prune_strategy:str) -> None:
+    def __init__(self, agent:LanguageModel, dataset_name:str, num_agents:int, max_round:int, prune_strategy:str, strict:bool=False) -> None:
         self.agent = agent
         self.num_agents = num_agents
         self.max_round = max_round
         self.prune_strategy = prune_strategy
+        self.strict = strict
         self.dataset_2_process_fn = dataset_2_process_fn(dataset_name)
         
         self.debate_log = {}
@@ -170,13 +171,20 @@ class MultiAgentDebate:
             memory_mask_prompts = merge_context_prompts(question, contexts)
             responses, _ = get_response_from_agent(self.agent, memory_mask_prompts, answer_process=False)
             for resp, context in zip(responses, contexts):
-                opinion = extract_with_label(resp, "label")
-                if opinion in ["YES", "yes", "Yes", "Y", "y", "Y", "NOT SURE", "not sure", "Not Sure", "Not sure"]:
+                opinion = normalize_answer(extract_with_label(resp, "label"))
+                if opinion == "yes":
                     cur_selected_contexts.append(context)
                     cur_mask.append(True)
-                else:
+                elif opinion == "no":
                     cur_mask.append(False)
                     continue
+                else:
+                    if self.strict:
+                        cur_mask.append(False)
+                        continue
+                    else:
+                        cur_selected_contexts.append(context)
+                        cur_mask.append(True)
             
             new_contexts.append(cur_selected_contexts)
             masks.append(cur_mask)
@@ -199,7 +207,6 @@ class MultiAgentDebate:
             masks.append(cur_masks)
             new_contexts.append(cur_selected_contexts)
         return new_contexts, masks
-
 
     def get_summary(self):
         return self.agent.get_token_usage_summary()

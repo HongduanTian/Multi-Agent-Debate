@@ -1,6 +1,6 @@
 #! /bin/bash
-model_name="qwen2.5-7b"
-dataset=("math" "mmlu_pro" "aime24" "aime25")
+model_name=$1
+dataset=("math" "mmlu_pro")
 seeds=(41 42 43 44 45)
 gpus=0,1
 

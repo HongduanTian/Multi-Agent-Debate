@@ -5,7 +5,7 @@ class LLMConfig:
         self.model = model_config.get("model", "Qwen/Qwen2.5-7B-Instruct")
         self.model_path = model_config.get("model_path", None)
         self.max_token_length = model_config.get("max_token_length", general_config.get("max_token_length", 24064))
-        self.temperature = general_config.get("temperature", 1)
+        self.temperature = model_config.get("temperature", general_config.get("temperature", 1))
         self.top_p = general_config.get("top_p", 1)
 
 

@@ -64,7 +64,18 @@ def main():
     
     # Initialize an LLM as an agent
     agent = LanguageModel(llm_configs)
-    mad = MultiAgentDebate(agent, dataset_name=args.dataset, num_agents=args.num_agents, max_round=args.max_round, prune_strategy=args.prune_strategy)
+    print(f"strict mode: {args.strict}")
+    mad = MultiAgentDebate(agent, dataset_name=args.dataset, num_agents=args.num_agents, max_round=args.max_round, prune_strategy=args.prune_strategy, strict=args.strict)
+    
+    print(f"================================= Task Info =================================")
+    print(f"Model: {args.model_name}")
+    print(f"Dataset: {args.dataset}")
+    print(f"Seed: {args.seed}")
+    print(f"Num Agents: {args.num_agents}")
+    print(f"Max Round: {args.max_round}")
+    print(f"Prune Strategy: {args.prune_strategy}")
+    print(f"Strict: {args.strict}")
+    print(f"================================= Task Info =================================")
     
     evaluator.eval(mad, args)
     

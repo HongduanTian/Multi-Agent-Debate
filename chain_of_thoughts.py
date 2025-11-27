@@ -3,7 +3,7 @@ import yaml
 import asyncio
 import sys
 import torch
-
+import time
 import logging
 
 logging.basicConfig(level=logging.WARNING)
@@ -66,7 +66,10 @@ def main():
     agent = LanguageModel(llm_configs)
     cot = ChainOfThought(agent, dataset_name=args.dataset, num_reasoning_paths=args.num_reasoning_paths, seed=args.seed, self_consistency=args.self_consistency)
     
+    time_start = time.time()
     evaluator.eval(cot, args)
+    time_end = time.time()
+    print(f"Time taken: {time_end - time_start} seconds")
     
 if __name__ == "__main__":
     main()
