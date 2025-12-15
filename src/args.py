@@ -18,5 +18,7 @@ def parse_args():
     parser.add_argument("--self_consistency", action="store_true", default=False, help="Whether to use self-consitency mode.")
     
     parser.add_argument("--exp_name", type=str, default="main", help="The name of the experiment.")
+    
+    parser.add_argument("--num_wrong_ans", type=int, default=1, help="The number of wrong answers.")
     args = parser.parse_args()
     return args

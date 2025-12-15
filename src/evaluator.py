@@ -315,14 +315,9 @@ class MATHEval(BaseEvaluator):
 
 from src.utils import extract_number
 class AIMEEval(BaseEvaluator):
-    #@classmethod
     def calculate_score(self, prediction:str, expected_output:str) -> float:
         try:
             pred_answer = self._extract_model_answer(str(prediction))
-            # print("prediction: ", prediction)
-            # print("pred_answer: ", pred_answer)
-            # print("expected_output: ", expected_output)
-
             is_correct = self._math_equal(pred_answer, str(expected_output))
             return 1.0 if is_correct else 0.0
         except Exception as e:

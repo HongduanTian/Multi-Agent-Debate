@@ -6,6 +6,10 @@ llm_configs:
   qwen2.5-7b:
     model: "Qwen/Qwen2.5-7B-Instruct"
     model_path: "/home/cshdtian/pretrained_models/LargeLanguageModels/Qwen-2.5-7b/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28"
+  qwen2.5-1.5b:
+    model: "Qwen/Qwen2.5-1.5B-Instruct"
+  qwen2.5-3b:
+    model: "Qwen/Qwen2.5-3B-Instruct"
   qwen2.5-math-7b:
     model: "Qwen/Qwen2.5-Math-7B-Instruct"
     model_path: None

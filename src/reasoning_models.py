@@ -237,6 +237,7 @@ class ChainOfThought:
         if self.self_consistency:
             reasoning_paths = []
             perplexities = []
+            
             for idx, prompt in enumerate(formatted_prompts):
                 sc_prompts = [prompt] * self.num_reasoning_paths
                 response_list, perplexity_list = get_response_from_agent(self.agent, sc_prompts, answer_process=True)
@@ -278,7 +279,6 @@ class ChainOfThought:
             json.dump(self.cot_log, f, ensure_ascii=False, indent=2)
 
 
-
 def preprocess_data(prompts:Dict):
     ids = []
     questions = []
@@ -306,7 +306,7 @@ def prompts_with_format(promptList:List[str], contextList:List[str]=None, reason
         else:
             raise ValueError(f"Invalid reasoning mode: {reasoning_mode}")
         
-        new_prompt = prompt + f"\n\n### Response format (must be strictly followed) (do not include any other formats except for the given XML format): \n<think></think>\n<answer></answer>."
+        new_prompt = prompt + f"\n\n### Response format (MUST be strictly followed) (DO NOT include any other formats except for the given XML format): \n<think>YOUR THINKING HERE</think>\n<answer>YOUR FINAL ANSWER ONLY, NO OTHER TEXT</answer>."
         
         updated_prompts.append(new_prompt)
     return updated_prompts

@@ -1,0 +1,35 @@
+==========================================
+Experiment Execution Log
+Start time: Tuesday, November 18, 2025 PM12:09:54 HKT
+==========================================
+
+==========================================
+Script: mad_ppl.sh
+Start time: Tuesday, November 18, 2025 PM12:09:54 HKT
+Status: Success
+End time: Tuesday, November 18, 2025 PM01:03:41 HKT
+
+==========================================
+Script: analysis_reasonpath.sh
+Start time: Tuesday, November 18, 2025 PM01:03:41 HKT
+Status: Success
+End time: Tuesday, November 18, 2025 PM10:27:50 HKT
+
+==========================================
+Script: analysis_num_agents.sh
+Start time: Tuesday, November 18, 2025 PM10:27:50 HKT
+Status: Success
+End time: Wednesday, November 19, 2025 AM09:26:29 HKT
+
+==========================================
+Script: analysis_num_rounds.sh
+Start time: Wednesday, November 19, 2025 AM09:26:29 HKT
+Status: Success
+End time: Thursday, November 20, 2025 AM03:01:32 HKT
+
+
+==========================================
+Execution Summary
+End time: Thursday, November 20, 2025 AM03:01:32 HKT
+Status: All scripts executed successfully
+==========================================

@@ -95,6 +95,7 @@ class LanguageModel:
                         result = {"think": response, "answer": answer}
                     except:
                         result = {"think": "", "answer": ""}
+                        #print(response)
                         print(f">>>>>> Error: Fail to parse answers.")
                 results_list.append(result)
             else:

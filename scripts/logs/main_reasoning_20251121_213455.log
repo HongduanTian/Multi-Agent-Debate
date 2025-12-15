@@ -1,0 +1,30 @@
+==========================================
+Main Reasoning Log
+Model name: qwen2.5-math-7b
+Start time: Friday, November 21, 2025 PM09:34:55 HKT
+==========================================
+
+==========================================
+Script: mad.sh
+Start time: Friday, November 21, 2025 PM09:34:55 HKT
+Status: Success
+End time: Friday, November 21, 2025 PM11:17:56 HKT
+
+==========================================
+Script: mad_naive.sh
+Start time: Friday, November 21, 2025 PM11:17:56 HKT
+Status: Success
+End time: Saturday, November 22, 2025 AM07:57:00 HKT
+
+==========================================
+Script: mad_ppl.sh
+Start time: Saturday, November 22, 2025 AM07:57:00 HKT
+Status: Success
+End time: Saturday, November 22, 2025 AM09:40:08 HKT
+
+
+==========================================
+Summary
+End time: Saturday, November 22, 2025 AM09:40:08 HKT
+Status: All scripts succeeded
+==========================================

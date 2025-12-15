@@ -1,0 +1,42 @@
+==========================================
+Main Reasoning Log
+Model name: deepseek-math-7b
+Start time: Monday, December 01, 2025 AM11:21:31 HKT
+==========================================
+
+==========================================
+Script: cot.sh
+Start time: Monday, December 01, 2025 AM11:21:31 HKT
+Status: Success
+End time: Monday, December 01, 2025 AM11:37:37 HKT
+
+==========================================
+Script: cot_sc.sh
+Start time: Monday, December 01, 2025 AM11:37:37 HKT
+Status: Success
+End time: Monday, December 01, 2025 PM01:50:22 HKT
+
+==========================================
+Script: mad.sh
+Start time: Monday, December 01, 2025 PM01:50:22 HKT
+Status: Success
+End time: Monday, December 01, 2025 PM02:39:07 HKT
+
+==========================================
+Script: mad_naive.sh
+Start time: Monday, December 01, 2025 PM02:39:07 HKT
+Status: Success
+End time: Monday, December 01, 2025 PM04:38:08 HKT
+
+==========================================
+Script: mad_ppl.sh
+Start time: Monday, December 01, 2025 PM04:38:08 HKT
+Status: Success
+End time: Monday, December 01, 2025 PM05:24:20 HKT
+
+
+==========================================
+Summary
+End time: Monday, December 01, 2025 PM05:24:20 HKT
+Status: All scripts succeeded
+==========================================
